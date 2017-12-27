@@ -3,13 +3,13 @@
 #include <linux/kernel.h>
 
 static int __init init_hello(void){
-	printk("My name is woo jin chael\n");
+	printk("name : bang jong won\n");
 
 	return 0;
 }
 
 static void __exit exit_hello(void){
-	printk("linus version is 4.9.70\n");
+	printk("linus version : 4.10.0-42-generic\n");
 }
 
 module_init(init_hello);
