@@ -18,20 +18,32 @@ int main()
 	int i;
 	char trash[100] = {0,};
 	int time;
+	char t1[100] = {0,};
 
 	pid=fork();
-
-	if(pid == 0)
-	{
+	if(pid == 0){
 		printf("input processor id : ");
 		scanf("%s",id);
+	}
 
-		strcat(a,id);
-		strcpy(c1,a);
-		strcat(c1,"/stat");
+	strcat(a,id);
+	strcpy(c1,a);
+	strcat(c1,"/stat");
+
+	strcpy(c2,a);
+	strcat(c2,"/status");
+	while(1){
+	if(pid == 0)
+	{
+//		printf("input processor id : ");
+//		scanf("%s",id);
+
+//		strcat(a,id);
+//		strcpy(c1,a);
+//		strcat(c1,"/stat");
 	
-		strcpy(c2,a);
-		strcat(c2,"/status");
+//		strcpy(c2,a);
+//		strcat(c2,"/status");
 
 		fp = fopen(c1,"r");
 
@@ -43,7 +55,7 @@ int main()
 		for(i=0; i<2; i++)
 		{
 			fscanf(fp,"%d ",&time);
-			printf("%d\n",time);
+//			printf("%d\n",time);
 			totaltime += time;
 		}
 
@@ -55,21 +67,24 @@ int main()
 		while(!feof(fp))
 		{
 			fscanf(fp,"%s ",trash);
-
+//			printf("%s\n",trash);
 			if(strcmp(trash,"VmSize:") == 0)
 			{
 				fscanf(fp,"%s",trash);
+				fscanf(fp,"%s",t1);
 				break;
 			}
 		}
 
-		printf("%s",trash);
+		printf("VmSize : %s ",trash);
+		printf("%s\n",t1);
 
 		fclose(fp);
-
+		sleep(3);
 
 	}
 	else
 		wait();
+}
 
 }
